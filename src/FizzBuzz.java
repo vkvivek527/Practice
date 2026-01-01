@@ -14,14 +14,13 @@ public class FizzBuzz {
         buzzSema = new Semaphore(0);
         fizzbuzzSema = new Semaphore(0);
     }
-
     /*
 • "fizzbuzz" if i is divisible by 3 and 5,
 • "fizz" if i is divisible by 3 and not 5,
 • "buzz" if i is divisible by 5 and not 3, or
 • if i is not divisible by 3 or 5.
     */
-    public void fizz(IntConsumer intConsumer){
+    public void fizz(){
         try {
             for(int i = 1; i <= n; i++){
                 if(i % 3 == 0 && i % 5 != 0){
@@ -34,7 +33,7 @@ public class FizzBuzz {
             System.out.println(e.getMessage());
         }
     }
-    public void buzz(IntConsumer intConsumer){
+    public void buzz(){
         try {
             for(int i = 1; i <= n; i++){
                 if(i % 3 != 0 && i % 5 == 0){
@@ -47,7 +46,7 @@ public class FizzBuzz {
             System.out.println(e.getMessage());
         }
     }
-    public void fizzbuzz(IntConsumer intConsumer) {
+    public void fizzbuzz() {
         try {
             for(int i = 1; i <= n; i++){
                 if(i % 3 == 0 && i % 5 == 0){
@@ -56,14 +55,14 @@ public class FizzBuzz {
                     intSema.release();
                 }
             }
-        }catch (InterruptedException e){
+        }catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
-
     }
     public void number (IntConsumer intConsumer) {
         try{
      for(int i = 1; i <= n; i++){
+         intSema.acquire();
          if(i % 3 == 0 && i % 5 == 0){
              fizzbuzzSema.release();
          }
@@ -72,7 +71,6 @@ public class FizzBuzz {
          }else if(i % 3 == 0){
              fizzSema.release();
          }else {
-             intSema.acquire();
              intConsumer.accept(i);
              intSema.release();
          }

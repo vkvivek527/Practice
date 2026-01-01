@@ -7,12 +7,13 @@ public class FizzbuzzImpl {
 
         IntConsumer intConsumer = System.out::println;
 
-        FizzBuzz fizzBuzz = new FizzBuzz(7);
+        FizzBuzz fizzBuzz = new FizzBuzz(15);
         ExecutorService executorService = Executors.newFixedThreadPool(4);
-             executorService.submit(() -> fizzBuzz.fizz(intConsumer));
-             executorService.submit(() -> fizzBuzz.buzz(intConsumer));
-             executorService.submit(() -> fizzBuzz.fizzbuzz(intConsumer));
-             executorService.submit(() -> fizzBuzz.number(intConsumer));
+        executorService.submit(() -> fizzBuzz.number(intConsumer));
+             executorService.submit(fizzBuzz::fizz);
+             executorService.submit(fizzBuzz::buzz);
+             executorService.submit(fizzBuzz::fizzbuzz);
+
              executorService.shutdown();
 
     }
