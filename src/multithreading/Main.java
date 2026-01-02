@@ -1,3 +1,5 @@
+package multithreading;
+
 public class Main {
     public static void main(String[] args) throws InterruptedException{
         BankAccount bnk = new BankAccount();

@@ -1,3 +1,5 @@
+package multithreading;
+
 public class XenosPrintEvenOdd {
 
     private boolean printZero = true;
